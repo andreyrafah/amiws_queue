@@ -1,3 +1,5 @@
+import EventsAsterisk from '../store/class.events'
+
 const WS = {}
 WS.sock = null
 WS.store = null
@@ -20,6 +22,11 @@ WS.install = function (Vue, store) {
 
   this.sock.onmessage = (ev) => {
     this.store.dispatch('newMessage', ev.data)
+    var event = JSON.parse(ev.data)
+    if (event.type === 3) {
+      const eventsClass = new EventsAsterisk()
+      eventsClass.handleEvent(event)
+    }
   }
 
   this.sock.onclose = (ev) => {
