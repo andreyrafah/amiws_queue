@@ -5,11 +5,11 @@ export default class EventsAsterisk {
   handleEvent (eventObject) {
     const eventsList = {
       Join (event) {
-        if (event.data.Queue === '910') {
+        if (event.data.Queue === '910' || event.data.Queue === '999') {
           const data = {
             event: 'Join',
             CallerIDNum: event.data.CallerIDNum,
-            Queue: 100,
+            Queue: 910,
             Uniqueid: event.data.Uniqueid
           }
           send.SendData(data)
