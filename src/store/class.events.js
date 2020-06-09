@@ -4,14 +4,16 @@ import send from './class.send'
 export default class EventsAsterisk {
   handleEvent (eventObject) {
     const eventsList = {
+
       Join (event) {
         if (event.data.Queue === '910' || event.data.Queue === '999') {
           const data = {
             event: 'Join',
             CallerIDNum: event.data.CallerIDNum,
-            Queue: 910,
+            Queue: event.data.Queue,
             Uniqueid: event.data.Uniqueid
           }
+          console.log(data)
           send.SendData(data)
         }
       },
